@@ -1,0 +1,12 @@
+
+    <div class="row mt-4">
+      <div class="col">
+        <h3 class="text-center">Workout List</h3>
+            <ul class="list-group"  >
+             <li class="list-group-item" *ngFor="let workoutPlan of workoutPlans">
+                 <app-workout-list-item [workoutPlan]="workoutPlan"></app-workout-list-item>
+            </li>
+         </ul>
+      </div>
+    </div>
+  

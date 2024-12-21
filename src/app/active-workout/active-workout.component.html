@@ -1,0 +1,46 @@
+<div *ngIf="workoutPlan" class="text-center">
+  <!-- Global Timer -->
+  <div class="mb-4">
+    <h3>Workout Time Elapsed: {{ globalTimerMinutes }}:{{ globalTimerSeconds | number: '2.0' }}</h3>
+  </div>
+
+  <!-- Preview Screen -->
+  <div *ngIf="!workoutStarted">
+    <h2>{{ workoutPlan.name }}</h2>
+    <h5>Total Duration: {{ workoutPlan.duration }} minutes</h5>
+    <h5>Difficulty: {{ workoutPlan.difficulty }}</h5>
+    <ul class="list-group my-4">
+      <li class="list-group-item" *ngFor="let workout of workoutPlan.workouts; index as i">
+        <strong>{{ i + 1 }}. {{ workout.name }}</strong> - 
+        {{ workout.duration }} minutes, 
+        {{ workout.repetitions }} reps
+      </li>
+    </ul>
+    <button class="btn btn-primary btn-lg" (click)="startWorkout()">Start Workout</button>
+  </div>
+
+  <!-- Active Workout -->
+  <div *ngIf="workoutStarted && !isResting">
+    <img 
+      [src]="'assets/images/Pushups.jpg'" 
+      alt="{{ workoutPlan.workouts[activeWorkoutIndex].name }}" 
+      class="img-fluid my-3 rounded"
+      style="max-width: 400px;"
+    />
+    <h2>Current Workout: {{ workoutPlan.workouts[activeWorkoutIndex].name }}</h2>
+    <p>Duration: {{ workoutPlan.workouts[activeWorkoutIndex].duration }} minutes</p>
+    <p>Repetitions: {{ workoutPlan.workouts[activeWorkoutIndex].repetitions }}</p>
+    <button class="btn btn-success" (click)="completeWorkout()">Complete Workout</button>
+  </div>
+
+  <!-- Resting -->
+  <div *ngIf="workoutStarted && isResting">
+    <h2>Rest Time</h2>
+    <p>{{ countdown }} seconds remaining</p>
+    <button class="btn btn-secondary" (click)="skipRest()">Skip Rest</button>
+  </div>
+</div>
+
+<div *ngIf="!workoutPlan" class="text-center">
+  <p>Loading workout plan...</p>
+</div>
