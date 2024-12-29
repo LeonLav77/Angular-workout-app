@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -6,16 +8,27 @@ import { Component } from '@angular/core';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  constructor(
+    private authService : AuthService,
+    private router: Router
+  ) { }
+
   name: string = '';
   email: string = '';
   password: string = '';
 
-  // Function to handle form submission
   onSubmit() {
-    console.log('Name:', this.name);
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+    const user = this.authService.register(this.name, this.email, this.password);
+  
+    user.then((data) => {
+      this.router.navigate(['/home']);
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
 
-    // Perform registration logic here (e.g., call an API)
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 }

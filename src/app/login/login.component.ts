@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router'; 
+import { AuthService } from '../auth.service';
+import { UserStateService } from '../user-state.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +11,28 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  invalidLogin: boolean = false;
 
-  constructor(private router: Router) {} 
+  constructor(
+    private authService : AuthService,
+    private router: Router,
+    private UserStateService: UserStateService,
+
+  ) {} 
 
   onSubmit() {
-    console.log('Email:', this.email);
-    console.log('Password:', this.password);
+    let loginToken = this.authService.login(this.email, this.password);
+  
+    loginToken.then((data) => {
+      this.UserStateService.login(data.token);
+      this.router.navigate(['/home']);
+    }).catch((error) => {
+      this.invalidLogin = true;
+    });
 
-    this.router.navigate(['/home']);
+  }
+
+  goToRegister() {
+    this.router.navigate(['/register']); 
   }
 }
