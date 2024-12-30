@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Exercise } from '../models/exercise.model';
 import { Workout } from '../models/workout.model';
+import { WorkoutService } from '../workout.service';
 
 @Component({
   selector: 'app-active-workout',
@@ -9,7 +10,7 @@ import { Workout } from '../models/workout.model';
   styleUrls: ['./active-workout.component.css'],
 })
 export class ActiveWorkoutComponent implements OnInit, OnDestroy {
-  workout: Workout = new Workout(0, '', 0, '', []);
+  workout: Workout = new Workout(0, '');
   activeWorkoutIndex: number = 0;
   isResting: boolean = false;
   restTime: number = 60;
@@ -19,7 +20,10 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
   globalTimer: number = 0;
   globalTimerInterval: any;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private workoutService: WorkoutService
+  ) {}
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -31,11 +35,10 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
   }
 
   fetchWorkout(id: number) {
-    this.workout = new Workout(1, 'Beginner', 30, 'Easy', [
-      new Exercise(1, 'Push-ups', 5, 'Easy', 10),
-      new Exercise(2, 'Sit-ups', 5, 'Easy', 10),
-      new Exercise(3, 'Jumping Jacks', 5, 'Easy', 15),
-    ]);
+    this.workoutService.getWorkout(id).subscribe((workout: Workout) => {
+      this.workout = workout;
+      console.log(this.workout);
+    });
   }
 
   startWorkout() {

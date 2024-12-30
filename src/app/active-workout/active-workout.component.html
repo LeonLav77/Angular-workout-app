@@ -1,25 +1,19 @@
 <div *ngIf="workout" class="text-center">
-  <!-- Global Timer -->
   <div class="mb-4">
     <h3>Workout Time Elapsed: {{ globalTimerMinutes }}:{{ globalTimerSeconds }}</h3>
   </div>
 
-  <!-- Preview Screen -->
   <div *ngIf="!workoutStarted">
     <h2>{{ workout.name }}</h2>
-    <h5>Total Duration: {{ workout.duration }} minutes</h5>
-    <h5>Difficulty: {{ workout.difficulty }}</h5>
     <ul class="list-group my-4">
       <li class="list-group-item" *ngFor="let workout of workout.exercises; index as i">
         <strong>{{ i + 1 }}. {{ workout.name }}</strong> - 
-        {{ workout.duration }} minutes, 
-        {{ workout.repetitions }} reps
+        {{ workout.reps }} reps
       </li>
     </ul>
     <button class="btn btn-primary btn-lg" (click)="startWorkout()">Start Workout</button>
   </div>
 
-  <!-- Active Workout -->
   <div *ngIf="workoutStarted && !isResting">
     <img 
       [src]="'assets/images/Pushups.jpg'" 
@@ -28,12 +22,10 @@
       style="max-width: 400px;"
     />
     <h2>Current Workout: {{ workout.exercises[activeWorkoutIndex].name }}</h2>
-    <p>Duration: {{ workout.exercises[activeWorkoutIndex].duration }} minutes</p>
-    <p>Repetitions: {{ workout.exercises[activeWorkoutIndex].repetitions }}</p>
+    <p>Reps: {{ workout.exercises[activeWorkoutIndex].reps }}</p>
     <button class="btn btn-success" (click)="completeWorkout()">Complete Workout</button>
   </div>
 
-  <!-- Resting -->
   <div *ngIf="workoutStarted && isResting">
     <h2>Rest Time</h2>
     <p>{{ countdown }} seconds remaining</p>

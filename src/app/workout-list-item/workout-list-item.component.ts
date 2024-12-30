@@ -8,7 +8,7 @@ import { Workout } from '../models/workout.model';
   styleUrls: ['./workout-list-item.component.css']
 })
 export class WorkoutListItemComponent {
-  @Input() workout: Workout = new Workout(0, '', 0, '');
+  @Input() workout: Workout = new Workout(0, '');
 
   constructor(private router: Router) {}
 
