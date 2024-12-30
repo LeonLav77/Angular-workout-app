@@ -15,6 +15,7 @@ import { ActiveWorkoutComponent } from './active-workout/active-workout.componen
 import { SortByOrderPipe } from './sort-by-order.pipe';
 import { CompletedWorkoutComponent } from './completed-workout/completed-workout.component';
 import { CompletedWorkoutListItemComponent } from './completed-workout-list-item/completed-workout-list-item.component';
+import { ExerciseComponent } from './exercise/exercise.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CompletedWorkoutListItemComponent } from './completed-workout-list-item
     ActiveWorkoutComponent,
     SortByOrderPipe,
     CompletedWorkoutComponent,
-    CompletedWorkoutListItemComponent
+    CompletedWorkoutListItemComponent,
+    ExerciseComponent
   ],
   imports: [
     BrowserModule,

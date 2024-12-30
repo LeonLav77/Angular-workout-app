@@ -1,12 +1,17 @@
 
 <div class="row bg-primary text-white py-2">
 
-  <div class="col text-center" *ngIf="isLoggedIn">
+  <div class="col text-center" *ngIf="isLoggedIn && !isAdmin">
     <button class="btn btn-link text-white" (click)="routeToHomepage()">Homepage</button>
   </div>
-  <div class="col text-center" *ngIf="isLoggedIn">
+  <div class="col text-center" *ngIf="isLoggedIn && !isAdmin">
     <button class="btn btn-link text-white" (click)="routeToCompletedWorkouts()">Completed Workouts</button>
   </div>
+
+  <div class="col text-center" *ngIf="isAdmin">
+    <button class="btn btn-link text-white" (click)="routeToExercises()">Exercises</button>
+  </div>
+
   <div class="col text-center" *ngIf="isLoggedIn">
     <button class="btn btn-link text-white" (click)="logout()">Logout</button>
   </div>
@@ -16,4 +21,5 @@
   <div class="col text-center" *ngIf="!isLoggedIn">
     <button class="btn btn-link text-white" (click)="routeToRegister()">Register</button>
   </div>
+
 </div>

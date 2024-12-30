@@ -10,9 +10,25 @@ export class UserStateService {
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.checkLoginStatus());
   isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
+  private isAdminSubject = new BehaviorSubject<boolean>(false);
+  isAdmin$ = this.isAdminSubject.asObservable();
+
   constructor(
     private apiHandlerService: ApiHandlerService
-  ) {}
+  ) {
+    this.initialize();
+  }
+
+  // On initialization, check login status and fetch user data if logged in
+  initialize() {
+    const token = this.getLoginToken();
+    if (token) {
+      this.isLoggedInSubject.next(true);
+      this.checkAdminStatus(token);  // Check if user is admin when token is available
+    } else {
+      this.isLoggedInSubject.next(false);
+    }
+  }
 
   private checkLoginStatus(): boolean {
     return !!localStorage.getItem('token');
@@ -21,11 +37,23 @@ export class UserStateService {
   login(token: string): void {
     localStorage.setItem('token', token);
     this.isLoggedInSubject.next(true);
+
+    const user = this.getUser();
+    user.then((userData: any) => {
+      console.log('User data:', userData);
+      if (userData.role === 1) {
+        this.isAdminSubject.next(true);
+      }
+    });
   }
 
   logout(): void {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
+  }
+
+  public isAdmin(): boolean {
+    return this.isAdminSubject.value;
   }
 
   public getLoginToken(): string | null {
@@ -41,6 +69,7 @@ export class UserStateService {
         id: userData.id,
         name: userData.name,
         email: userData.email,
+        role: userData.role,
         completedWorkouts: userData.completedWorkouts.map((workout: any) => ({
           id: workout.id,
           workoutId: workout.workoutId,
@@ -58,6 +87,17 @@ export class UserStateService {
     } catch (error) {
       console.error('Error fetching user data:', error);
       throw error;
+    }
+  }
+
+  async checkAdminStatus(token: string): Promise<void> {
+    try {
+      const user = await this.getUser();
+      if (user.role === 1) {
+        this.isAdminSubject.next(true);
+      }
+    } catch (error) {
+      console.error('Error checking admin status:', error);
     }
   }
 }

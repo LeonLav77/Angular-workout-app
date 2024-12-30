@@ -1,0 +1,80 @@
+<div class="container">
+  <h2 class="my-4">Exercises</h2>
+
+  <div class="row">
+    <div *ngFor="let exercise of exercises" class="col-md-3 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ exercise.name }}</h5>
+          <p><strong>Description:</strong> {{ exercise.description }}</p>
+          <img [src]="exercise.image" alt="{{ exercise.name }}" class="img-fluid">
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editExerciseModal" (click)="setSelectedExercise(exercise)">Edit</button>
+          <button class="btn btn-danger" (click)="deleteExercise(exercise.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Button to trigger Create Exercise Modal -->
+  <button class="btn btn-success my-4" data-bs-toggle="modal" data-bs-target="#createExerciseModal">Create New Exercise</button>
+
+  <!-- Modal for Creating Exercise -->
+  <div class="modal fade" id="createExerciseModal" tabindex="-1" aria-labelledby="createExerciseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createExerciseModalLabel">Create New Exercise</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="newExerciseName" class="form-label">Exercise Name</label>
+            <input type="text" class="form-control" id="newExerciseName" [(ngModel)]="newExercise.name">
+          </div>
+          <div class="mb-3">
+            <label for="newExerciseDescription" class="form-label">Description</label>
+            <input type="text" class="form-control" id="newExerciseDescription" [(ngModel)]="newExercise.description">
+          </div>
+          <div class="mb-3">
+            <label for="newExerciseImage" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="newExerciseImage" [(ngModel)]="newExercise.image">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="createExercise()">Save Exercise</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Editing Exercise -->
+  <div class="modal fade" id="editExerciseModal" tabindex="-1" aria-labelledby="editExerciseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editExerciseModalLabel">Edit Exercise</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exerciseName" class="form-label">Exercise Name</label>
+            <input type="text" class="form-control" id="exerciseName" [(ngModel)]="selectedExercise.name">
+          </div>
+          <div class="mb-3">
+            <label for="exerciseDescription" class="form-label">Description</label>
+            <input type="text" class="form-control" id="exerciseDescription" [(ngModel)]="selectedExercise.description">
+          </div>
+          <div class="mb-3">
+            <label for="exerciseImage" class="form-label">Image URL</label>
+            <input type="text" class="form-control" id="exerciseImage" [(ngModel)]="selectedExercise.image">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="saveExercise()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

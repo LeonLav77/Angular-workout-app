@@ -25,7 +25,11 @@ export class LoginComponent {
   
     loginToken.then((data) => {
       this.UserStateService.login(data.token);
-      this.router.navigate(['/home']);
+      if(this.UserStateService.isAdmin()) {
+        this.router.navigate(['/exercises']);
+      }else{
+        this.router.navigate(['/home']);
+      }
     }).catch((error) => {
       this.invalidLogin = true;
     });

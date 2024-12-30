@@ -9,6 +9,7 @@ import { UserStateService } from '../user-state.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(
     protected router: Router,
@@ -19,6 +20,11 @@ export class NavbarComponent implements OnInit {
     // Subscribe to the login status observable
     this.UserStateService.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
+    });
+
+    // Subscribe to the admin status observable
+    this.UserStateService.isAdmin$.subscribe(status => {
+      this.isAdmin = status;
     });
   }
 
@@ -41,5 +47,9 @@ export class NavbarComponent implements OnInit {
 
   routeToRegister() {
     this.router.navigate(['/register']);
+  }
+
+  routeToExercises() {
+    this.router.navigate(['/exercises']);
   }
 }
