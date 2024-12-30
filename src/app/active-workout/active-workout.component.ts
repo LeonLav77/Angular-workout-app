@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Exercise } from '../models/exercise.model';
 import { Workout } from '../models/workout.model';
-import { WorkoutPlan } from '../models/workout-plan.model';
 
 @Component({
   selector: 'app-active-workout',
@@ -9,32 +9,32 @@ import { WorkoutPlan } from '../models/workout-plan.model';
   styleUrls: ['./active-workout.component.css'],
 })
 export class ActiveWorkoutComponent implements OnInit, OnDestroy {
-  workoutPlan: WorkoutPlan | null = null; // The fetched workout plan
-  activeWorkoutIndex: number = 0; // Tracks the current workout
-  isResting: boolean = false; // Indicates if the user is in the rest phase
-  restTime: number = 60; // Rest time in seconds
+  workout: Workout = new Workout(0, '', 0, '', []);
+  activeWorkoutIndex: number = 0;
+  isResting: boolean = false;
+  restTime: number = 60;
   countdown: number = this.restTime;
 
-  workoutStarted: boolean = false; // Tracks if the workout has started
-  globalTimer: number = 0; // Global timer in seconds
-  globalTimerInterval: any; // Interval reference for global timer
+  workoutStarted: boolean = false;
+  globalTimer: number = 0;
+  globalTimerInterval: any;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id')); // Get the workout plan ID from the route
-    this.fetchWorkoutPlan(id);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.fetchWorkout(id);
   }
 
   ngOnDestroy() {
     this.stopGlobalTimer();
   }
 
-  fetchWorkoutPlan(id: number) {
-    this.workoutPlan = new WorkoutPlan(1, 'Beginner Plan', 30, 'Easy', [
-      new Workout(1, 'Push-ups', 5, 'Easy', 10),
-      new Workout(2, 'Sit-ups', 5, 'Easy', 10),
-      new Workout(3, 'Jumping Jacks', 5, 'Easy', 15),
+  fetchWorkout(id: number) {
+    this.workout = new Workout(1, 'Beginner', 30, 'Easy', [
+      new Exercise(1, 'Push-ups', 5, 'Easy', 10),
+      new Exercise(2, 'Sit-ups', 5, 'Easy', 10),
+      new Exercise(3, 'Jumping Jacks', 5, 'Easy', 15),
     ]);
   }
 
@@ -44,7 +44,7 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
   }
 
   completeWorkout() {
-    if (this.workoutPlan && this.activeWorkoutIndex < this.workoutPlan.workouts.length - 1) {
+    if (this.workout && this.activeWorkoutIndex < this.workout.exercises.length - 1) {
       this.isResting = true;
       this.startRestCountdown(() => {
         this.isResting = false;

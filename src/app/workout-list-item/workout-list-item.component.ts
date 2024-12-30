@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Workout } from '../models/workout.model';
 
 @Component({
   selector: 'app-workout-list-item',
@@ -7,12 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./workout-list-item.component.css']
 })
 export class WorkoutListItemComponent {
-  @Input() workoutPlan: any; // Replace `any` with the appropriate type for your data
+  @Input() workout: Workout = new Workout(0, '', 0, '');
 
   constructor(private router: Router) {}
 
-  // Method to handle the Start Workout button click
-  startWorkout(workoutPlanId: number) {
-      this.router.navigate(['/active-workout', workoutPlanId]); // Navigate to Active Workout
+  startWorkout(workoutId: number) {
+      this.router.navigate(['/active-workout', workoutId]);
   }
 }

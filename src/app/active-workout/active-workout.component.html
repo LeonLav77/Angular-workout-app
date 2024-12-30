@@ -1,16 +1,16 @@
-<div *ngIf="workoutPlan" class="text-center">
+<div *ngIf="workout" class="text-center">
   <!-- Global Timer -->
   <div class="mb-4">
-    <h3>Workout Time Elapsed: {{ globalTimerMinutes }}:{{ globalTimerSeconds | number: '2.0' }}</h3>
+    <h3>Workout Time Elapsed: {{ globalTimerMinutes }}:{{ globalTimerSeconds }}</h3>
   </div>
 
   <!-- Preview Screen -->
   <div *ngIf="!workoutStarted">
-    <h2>{{ workoutPlan.name }}</h2>
-    <h5>Total Duration: {{ workoutPlan.duration }} minutes</h5>
-    <h5>Difficulty: {{ workoutPlan.difficulty }}</h5>
+    <h2>{{ workout.name }}</h2>
+    <h5>Total Duration: {{ workout.duration }} minutes</h5>
+    <h5>Difficulty: {{ workout.difficulty }}</h5>
     <ul class="list-group my-4">
-      <li class="list-group-item" *ngFor="let workout of workoutPlan.workouts; index as i">
+      <li class="list-group-item" *ngFor="let workout of workout.exercises; index as i">
         <strong>{{ i + 1 }}. {{ workout.name }}</strong> - 
         {{ workout.duration }} minutes, 
         {{ workout.repetitions }} reps
@@ -23,13 +23,13 @@
   <div *ngIf="workoutStarted && !isResting">
     <img 
       [src]="'assets/images/Pushups.jpg'" 
-      alt="{{ workoutPlan.workouts[activeWorkoutIndex].name }}" 
+      alt="{{ workout.exercises[activeWorkoutIndex].name }}" 
       class="img-fluid my-3 rounded"
       style="max-width: 400px;"
     />
-    <h2>Current Workout: {{ workoutPlan.workouts[activeWorkoutIndex].name }}</h2>
-    <p>Duration: {{ workoutPlan.workouts[activeWorkoutIndex].duration }} minutes</p>
-    <p>Repetitions: {{ workoutPlan.workouts[activeWorkoutIndex].repetitions }}</p>
+    <h2>Current Workout: {{ workout.exercises[activeWorkoutIndex].name }}</h2>
+    <p>Duration: {{ workout.exercises[activeWorkoutIndex].duration }} minutes</p>
+    <p>Repetitions: {{ workout.exercises[activeWorkoutIndex].repetitions }}</p>
     <button class="btn btn-success" (click)="completeWorkout()">Complete Workout</button>
   </div>
 
@@ -41,6 +41,6 @@
   </div>
 </div>
 
-<div *ngIf="!workoutPlan" class="text-center">
-  <p>Loading workout plan...</p>
+<div *ngIf="!workout" class="text-center">
+  <p>Loading workout ...</p>
 </div>
