@@ -12,6 +12,7 @@ import { WorkoutListItemComponent } from './workout-list-item/workout-list-item.
 import { NavbarComponent } from './navbar/navbar.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { ActiveWorkoutComponent } from './active-workout/active-workout.component';
+import { SortByOrderPipe } from './sort-by-order.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ActiveWorkoutComponent } from './active-workout/active-workout.componen
     WorkoutListItemComponent,
     NavbarComponent,
     WorkoutComponent,
-    ActiveWorkoutComponent
+    ActiveWorkoutComponent,
+    SortByOrderPipe
   ],
   imports: [
     BrowserModule,

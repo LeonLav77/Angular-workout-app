@@ -6,7 +6,7 @@
   <div *ngIf="!workoutStarted">
     <h2>{{ workout.name }}</h2>
     <ul class="list-group my-4">
-      <li class="list-group-item" *ngFor="let workout of workout.exercises; index as i">
+      <li class="list-group-item" *ngFor="let workout of workout.exercises | sortByOrder; index as i">
         <strong>{{ i + 1 }}. {{ workout.name }}</strong> - 
         {{ workout.reps }} reps
       </li>
