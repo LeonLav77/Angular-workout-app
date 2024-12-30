@@ -13,6 +13,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { WorkoutComponent } from './workout/workout.component';
 import { ActiveWorkoutComponent } from './active-workout/active-workout.component';
 import { SortByOrderPipe } from './sort-by-order.pipe';
+import { CompletedWorkoutComponent } from './completed-workout/completed-workout.component';
+import { CompletedWorkoutListItemComponent } from './completed-workout-list-item/completed-workout-list-item.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SortByOrderPipe } from './sort-by-order.pipe';
     NavbarComponent,
     WorkoutComponent,
     ActiveWorkoutComponent,
-    SortByOrderPipe
+    SortByOrderPipe,
+    CompletedWorkoutComponent,
+    CompletedWorkoutListItemComponent
   ],
   imports: [
     BrowserModule,

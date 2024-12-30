@@ -30,4 +30,16 @@ export class NavbarComponent implements OnInit {
     this.UserStateService.logout();  // Log out and update status
     this.router.navigate(['/login']);
   }
+
+  routeToCompletedWorkouts() {
+    this.router.navigate(['/completed-workouts']);
+  }
+
+  routeToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  routeToRegister() {
+    this.router.navigate(['/register']);
+  }
 }

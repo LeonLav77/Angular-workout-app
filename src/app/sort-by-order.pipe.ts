@@ -8,6 +8,6 @@ export class SortByOrderPipe implements PipeTransform {
 
   transform(exercises: Exercise[]): Exercise[] {
     if (!exercises) return [];
-    return exercises.sort((a, b) => a.order - b.order); // Sort by 'order'
+    return exercises.sort((a, b) => a.order - b.order);
   }
 }

@@ -5,6 +5,8 @@ export class Workout {
       public id: number,
       public name: string,
       public exercises: Exercise[] = [],
+      public duration: number = 0,
+      public completedAt: Date = new Date(),
     ) {
     }
   }

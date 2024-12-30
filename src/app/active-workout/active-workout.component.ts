@@ -78,9 +78,10 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
   workoutComplete() {
     this.stopGlobalTimer();
     alert(`Workout Complete! Great Job! Total Time: ${this.globalTimerMinutes}:${this.globalTimerSeconds}`);
+  
+    this.workoutService.completeWorkout(this.workout, this.globalTimer);
   }
 
-  // Global Timer Logic
   startGlobalTimer() {
     this.globalTimer = 0;
     this.globalTimerInterval = setInterval(() => {

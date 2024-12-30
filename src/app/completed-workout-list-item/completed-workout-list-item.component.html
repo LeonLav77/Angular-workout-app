@@ -1,0 +1,53 @@
+<div class="container my-4">
+    <div class="card mb-4 shadow-sm mx-auto" style="max-width: 800px;">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+          <h5 class="card-title mb-2 text-primary">{{ workout.name }}</h5>
+        </div>
+  
+        <div class="text-end">
+          <p class="mb-0 text-muted"><small><strong>Completed At:</strong> {{ workout.completedAt | date:'short' }}</small></p>
+          <p><strong>Time taken:</strong> {{ workout.duration }} sec</p>
+        </div>
+      </div>
+  
+      <div class="text-center mt-3">
+        <button 
+          class="btn btn-info" 
+          data-bs-toggle="modal" 
+          data-bs-target="#exerciseModal">
+          View Exercises <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="exerciseModal" tabindex="-1" aria-labelledby="exerciseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exerciseModalLabel">{{ workout.name }} - Exercises</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="list-group">
+            <div *ngFor="let exercise of workout.exercises; let i = index">
+              <div class="list-group-item">
+                <h5>{{ exercise.name }}</h5>
+                <p><strong>Reps:</strong> {{ exercise.reps }}</p>
+  
+                <div class="text-center my-2">
+                  <i class="bi bi-chevron-down"></i>
+                </div>
+              </div>
+              <div *ngIf="i !== workout.exercises.length - 1" class="my-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
