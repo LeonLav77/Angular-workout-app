@@ -9,5 +9,13 @@ import { Workout } from '../models/workout.model';
 export class CompletedWorkoutListItemComponent {
   @Input() workout: Workout = new Workout(0, '');
 
-  constructor() {}
+  activeWorkout: Workout | null = null;
+
+  openModal(workout: Workout): void {
+    this.activeWorkout = workout;
+  }
+
+  closeModal(): void {
+    this.activeWorkout = null;
+  }
 }

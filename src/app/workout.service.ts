@@ -31,10 +31,10 @@ export class WorkoutService {
     );
   }
 
-  completeWorkout(workout: Workout, duration : number): void {
+  completeWorkout(workout: Workout, duration: number): Promise<void> {
     const token = this.userStateService.getLoginToken() ?? '';
-
-    this.apiHandlerService.post('workouts/' + workout.id + '/complete', { duration }, {token});
+  
+    return this.apiHandlerService.post(`workouts/${workout.id}/complete`, { duration }, { token });
   }
 
   createWorkout(workout: Workout): Observable<Workout> {

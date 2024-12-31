@@ -1,6 +1,6 @@
 <div *ngIf="workout" class="text-center">
   <div class="mb-4">
-    <h3>Workout Time Elapsed: {{ globalTimerMinutes }}:{{ globalTimerSeconds }}</h3>
+    <h3>Workout Time Elapsed: {{ globalTimerMinutes | number: '2.0' }}:{{ globalTimerSeconds | number: '2.0' }}</h3>
   </div>
 
   <div *ngIf="!workoutStarted">
@@ -16,7 +16,7 @@
 
   <div *ngIf="workoutStarted && !isResting">
     <img 
-      [src]="'assets/images/Pushups.jpg'" 
+      [src]="workout.exercises[activeWorkoutIndex].image" 
       alt="{{ workout.exercises[activeWorkoutIndex].name }}" 
       class="img-fluid my-3 rounded"
       style="max-width: 400px;"

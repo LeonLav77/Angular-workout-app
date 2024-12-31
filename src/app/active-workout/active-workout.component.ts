@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Exercise } from '../models/exercise.model';
 import { Workout } from '../models/workout.model';
 import { WorkoutService } from '../workout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-active-workout',
@@ -22,7 +22,8 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private workoutService: WorkoutService
+    private workoutService: WorkoutService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -78,7 +79,14 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
     this.stopGlobalTimer();
     alert(`Workout Complete! Great Job! Total Time: ${this.globalTimerMinutes}:${this.globalTimerSeconds}`);
   
-    this.workoutService.completeWorkout(this.workout, this.globalTimer);
+    this.workoutService.completeWorkout(this.workout, this.globalTimer)
+    .then(() => {
+      this.router.navigate(['/completed-workouts']); // Navigate after completion
+    })
+    .catch((error) => {
+      console.error('Error completing workout:', error);
+      alert('Failed to complete workout. Please try again.');
+    });
   }
 
   startGlobalTimer() {
