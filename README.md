@@ -1,27 +1,54 @@
-# AngularProjekt
+# Angular App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+This is an Angular application designed to provide a modern and responsive frontend for various use cases. Follow the instructions below to set up and run the application on your local machine.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Node.js**: v22.12.0
+- **npm**: v10.9.0
+- **Angular**: v18.0.0
 
-## Code scaffolding
+Ensure you have these versions installed before proceeding.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Setup Instructions
 
-## Build
+Follow these steps to set up the project:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. **Clone the Repository**
 
-## Running unit tests
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. **Install Dependencies**
 
-## Running end-to-end tests
+   Use `sudo` to ensure permissions for installing dependencies globally if needed:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   sudo npm install
+   ```
 
-## Further help
+3. **Start the Development Server**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   Use the Angular CLI to serve the application:
+
+   ```bash
+   ng serve
+   ```
+
+   The application will be available at `http://localhost:4200/` by default.
+
+## Additional Notes
+
+- If you encounter permission issues, ensure that your user has the necessary privileges or try running the commands with `sudo`.
+- Make sure to run the Angular CLI commands inside the project directory.
+- The development server supports hot module replacement, so changes will be reflected in real time.
+
+## Contribution
+
+Feel free to contribute to this project by submitting issues or creating pull requests. Make sure to follow the project's code style and guidelines.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
