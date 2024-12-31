@@ -7,7 +7,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ exercise.name }}</h5>
           <p><strong>Description:</strong> {{ exercise.description }}</p>
-          <img [src]="exercise.image" alt="{{ exercise.name }}" class="img-fluid">
+          <img [src]="exercise.image" alt="{{ exercise.name }}" class="img-fluid exercise-img">
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editExerciseModal" (click)="setSelectedExercise(exercise)">Edit</button>
           <button class="btn btn-danger" (click)="deleteExercise(exercise.id)">Delete</button>
         </div>
