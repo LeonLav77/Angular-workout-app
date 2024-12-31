@@ -11,6 +11,9 @@
   <div class="col text-center" *ngIf="isAdmin">
     <button class="btn btn-link text-white" (click)="routeToExercises()">Exercises</button>
   </div>
+  <div class="col text-center" *ngIf="isAdmin">
+    <button class="btn btn-link text-white" (click)="routeToWorkouts()">Workouts</button>
+  </div>
 
   <div class="col text-center" *ngIf="isLoggedIn">
     <button class="btn btn-link text-white" (click)="logout()">Logout</button>

@@ -7,6 +7,8 @@ import { ActiveWorkoutComponent } from './active-workout/active-workout.componen
 import { AuthGuard } from './auth.guard';
 import { CompletedWorkoutComponent } from './completed-workout/completed-workout.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { WorkoutComponent } from './workout/workout.component';
+import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'completed-workouts', component: CompletedWorkoutComponent, canActivate: [AuthGuard] }, 
   { path: 'active-workout/:id', component: ActiveWorkoutComponent, canActivate: [AuthGuard] }, 
   { path: 'exercises', component: ExerciseComponent, canActivate: [AuthGuard] }, 
+  { path: 'workouts', component: WorkoutComponent, canActivate: [AuthGuard] }, 
+  { path: 'workout-details/:id', component: WorkoutDetailsComponent, canActivate: [AuthGuard] }, 
   { path: '', redirectTo: '/home', pathMatch: 'full' }
 ];
 

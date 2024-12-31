@@ -1,0 +1,76 @@
+<div *ngIf="workout" class="container">
+    <h2 class="my-4">{{ workout.id === 0 ? 'Create Workout' : 'Edit Workout' }}</h2>
+  
+    <div class="mb-3">
+      <label for="workoutName" class="form-label">Workout Name</label>
+      <input type="text" class="form-control" id="workoutName" [(ngModel)]="workout.name" />
+    </div>
+  
+    <div class="mb-3">
+      <label for="workoutDescription" class="form-label">Description</label>
+      <textarea class="form-control" id="workoutDescription" [(ngModel)]="workout.description"></textarea>
+    </div>
+  
+    <div class="mb-3">
+      <label for="workoutImage" class="form-label">Image URL</label>
+      <input type="text" class="form-control" id="workoutImage" [(ngModel)]="workout.image" />
+    </div>
+  
+    <img
+      *ngIf="workout.image"
+      [src]="workout.image"
+      alt="Workout Image"
+      class="img-fluid mb-3"
+      style="max-width: 300px;"
+    />
+  
+    <div class="row">
+      <!-- Available Exercises -->
+      <div class="col-md-6 container">
+        <h3>Available Exercises</h3>
+        <div
+          cdkDropList
+          id="available"
+          [cdkDropListConnectedTo]="['selected']"
+          [cdkDropListData]="availableExercises"
+          class="list-group container"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            *ngFor="let exercise of availableExercises"
+            cdkDrag
+            [cdkDragData]="exercise"
+            class="list-group-item"
+          >
+            {{ exercise.name }}
+          </div>
+        </div>
+      </div>
+  
+      <!-- Selected Exercises -->
+      <div class="col-md-6">
+        <h3>Selected Exercises</h3>
+        <div
+          cdkDropList
+          id="selected"
+          [cdkDropListConnectedTo]="['available']"
+          [cdkDropListData]="workout.exercises || []"
+          class="list-group container"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div
+            *ngFor="let exercise of workout?.exercises || []"
+            cdkDrag
+            [cdkDragData]="exercise"
+            class="list-group-item"
+          >
+            {{ exercise.name }}
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Submit Button -->
+    <button class="btn btn-primary mt-3" (click)="submitWorkout()">Submit Workout</button>
+  </div>
+  

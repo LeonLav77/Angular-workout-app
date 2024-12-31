@@ -16,6 +16,8 @@ import { SortByOrderPipe } from './sort-by-order.pipe';
 import { CompletedWorkoutComponent } from './completed-workout/completed-workout.component';
 import { CompletedWorkoutListItemComponent } from './completed-workout-list-item/completed-workout-list-item.component';
 import { ExerciseComponent } from './exercise/exercise.component';
+import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { ExerciseComponent } from './exercise/exercise.component';
     SortByOrderPipe,
     CompletedWorkoutComponent,
     CompletedWorkoutListItemComponent,
-    ExerciseComponent
+    ExerciseComponent,
+    WorkoutDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,50 @@
-<p>workout works!</p>
+<div class="container">
+    <h2 class="my-4">Workouts</h2>
+  
+    <div class="row">
+      <div *ngFor="let workout of workouts" class="col-md-3 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ workout.name }}</h5>
+            <p><strong>Description:</strong> {{ workout.description }}</p>
+            <img [src]="workout.image" alt="{{ workout.name }}" class="img-fluid">
+            <button class="btn btn-primary" (click)="openWorkoutDetails(workout.id)">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Button to trigger Create Workout Modal -->
+    <button class="btn btn-success my-4" (click)="createNewWorkout()" data-bs-toggle="modal" data-bs-target="#createWorkoutModal">Create New Workout</button>
+  
+    <!-- Modal for Creating/Editing Workout -->
+    <div class="modal fade" id="createWorkoutModal" tabindex="-1" aria-labelledby="createWorkoutModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createWorkoutModalLabel">{{ selectedWorkout.id === 0 ? 'Create New Workout' : 'Edit Workout' }}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="workoutName" class="form-label">Workout Name</label>
+              <input type="text" class="form-control" id="workoutName" [(ngModel)]="selectedWorkout.name">
+            </div>
+            <div class="mb-3">
+              <label for="workoutDescription" class="form-label">Description</label>
+              <input type="text" class="form-control" id="workoutDescription" [(ngModel)]="selectedWorkout.description">
+            </div>
+            <div class="mb-3">
+              <label for="workoutImage" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="workoutImage" [(ngModel)]="selectedWorkout.image">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" (click)="saveWorkout()">Save Workout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

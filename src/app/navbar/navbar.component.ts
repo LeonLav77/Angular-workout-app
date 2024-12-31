@@ -52,4 +52,8 @@ export class NavbarComponent implements OnInit {
   routeToExercises() {
     this.router.navigate(['/exercises']);
   }
+
+  routeToWorkouts() {
+    this.router.navigate(['/workouts']);
+  }
 }

@@ -1,0 +1,22 @@
+.list-group {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-height: 200px;
+    padding: 10px;
+    background-color: #f8f9fa;
+  }
+  
+  .list-group-item {
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    cursor: grab;
+  }
+  
+  .list-group-item:active {
+    cursor: grabbing;
+  }
+  
+  .row {
+    margin-top: 20px;
+  }
+  
