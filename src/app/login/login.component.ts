@@ -21,19 +21,19 @@ export class LoginComponent {
   ) {} 
 
   onSubmit() {
-    let loginToken = this.authService.login(this.email, this.password);
-  
-    loginToken.then((data) => {
+    this.authService.login(this.email, this.password).then((data) => {
       this.UserStateService.login(data.token);
-      if(this.UserStateService.isAdmin()) {
-        this.router.navigate(['/exercises']);
-      }else{
-        this.router.navigate(['/home']);
-      }
+  
+      this.UserStateService.isAdmin$.subscribe((isAdmin) => {
+        if (isAdmin) {
+          this.router.navigate(['/exercises']);
+        } else {
+          this.router.navigate(['/home']);
+        }
+      });
     }).catch((error) => {
       this.invalidLogin = true;
     });
-
   }
 
   goToRegister() {

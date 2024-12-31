@@ -96,9 +96,6 @@ export class WorkoutDetailsComponent implements OnInit {
               const order = index + 1;
   
               this.workoutService.addExerciseToWorkout(this.workout.id, exercise.id, reps, order).subscribe(
-                () => {
-                  console.log('Exercise added to workout');
-                },
                 (error: any) => {
                   console.error('Error adding exercise to workout', error);
                 }

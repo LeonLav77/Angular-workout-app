@@ -31,7 +31,6 @@ export class RegisterComponent {
     this.authService
       .register(name, email, password)
       .then((data) => {
-        console.log(data);
         this.router.navigate(['/login']);
       })
       .catch((error) => {

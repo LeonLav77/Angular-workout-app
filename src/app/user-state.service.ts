@@ -26,6 +26,7 @@ export class UserStateService {
       this.checkAdminStatus(token); 
     } else {
       this.isLoggedInSubject.next(false);
+      this.isAdminSubject.next(false);
     }
   }
 
@@ -37,13 +38,7 @@ export class UserStateService {
     localStorage.setItem('token', token);
     this.isLoggedInSubject.next(true);
 
-    const user = this.getUser();
-    user.then((userData: any) => {
-      console.log('User data:', userData);
-      if (userData.role === 1) {
-        this.isAdminSubject.next(true);
-      }
-    });
+    this.checkAdminStatus(token);
   }
 
   logout(): void {
@@ -63,7 +58,6 @@ export class UserStateService {
     try {
       const token = localStorage.getItem('token');
       const userData = await this.apiHandlerService.get('users/token/' + token);
-      console.log('User data:', userData);
       return {
         id: userData.id,
         name: userData.name,
