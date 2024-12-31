@@ -44,6 +44,7 @@ export class UserStateService {
   logout(): void {
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
+    this.isAdminSubject.next(false);
   }
 
   public isAdmin(): boolean {
