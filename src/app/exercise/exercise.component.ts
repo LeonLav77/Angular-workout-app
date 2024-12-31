@@ -35,6 +35,7 @@ export class ExerciseComponent implements OnInit {
 
   saveExercise(): void {
     const index = this.exercises.findIndex(exercise => exercise.id === this.selectedExercise.id);
+    
     if (index !== -1) {
       this.exerciseService.updateExercise(this.selectedExercise).subscribe(
         (updatedExercise: Exercise) => {

@@ -21,9 +21,9 @@
       class="img-fluid my-3 rounded"
       style="max-width: 400px;"
     />
-    <h2>Current Workout: {{ workout.exercises[activeWorkoutIndex].name }}</h2>
+    <h2>Current Exercise: {{ workout.exercises[activeWorkoutIndex].name }}</h2>
     <p>Reps: {{ workout.exercises[activeWorkoutIndex].reps }}</p>
-    <button class="btn btn-success" (click)="completeWorkout()">Complete Workout</button>
+    <button class="btn btn-success" (click)="completeExercise()">Complete Exercise</button>
   </div>
 
   <div *ngIf="workoutStarted && isResting">

@@ -28,7 +28,6 @@
           />
         </div>
 
-        <!-- Display error message when login is invalid -->
         <div *ngIf="invalidLogin" class="alert alert-danger">
           Invalid email or password. Please try again.
         </div>
@@ -36,7 +35,6 @@
         <button type="submit" class="btn btn-primary w-100">Login</button>
       </form>
 
-      <!-- Register Button -->
       <div class="text-center mt-3">
         <button class="btn btn-link" (click)="goToRegister()">Go to Register</button>
       </div>

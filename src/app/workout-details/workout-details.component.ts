@@ -16,6 +16,7 @@ export class WorkoutDetailsComponent implements OnInit {
   workout: Workout = new Workout(0, '');
   availableExercises: Exercise[] = []; 
   selectedExercises: Exercise[] = []; 
+  
   constructor(
     private workoutService: WorkoutService,
     private route: ActivatedRoute,

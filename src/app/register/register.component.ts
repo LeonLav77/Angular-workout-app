@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -8,24 +9,36 @@ import { Router } from '@angular/router';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+  registerForm: FormGroup;
+  error = "";
 
   constructor(
-    private authService : AuthService,
+    private fb: FormBuilder,
+    private authService: AuthService,
     private router: Router
-  ) { }
-
-  name: string = '';
-  email: string = '';
-  password: string = '';
+  ) {
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   onSubmit() {
-    const user = this.authService.register(this.name, this.email, this.password);
-  
-    user.then((data) => {
-      this.router.navigate(['/home']);
-    }).catch((error) => {
-      console.error(error);
-    });
+    if (this.registerForm.invalid) return;
+
+    const { name, email, password } = this.registerForm.value;
+    this.authService
+      .register(name, email, password)
+      .then((data) => {
+        console.log(data);
+        this.router.navigate(['/login']);
+      })
+      .catch((error) => {
+        if (error.status === 418) {
+          this.error = "Email already exists";
+        }
+      });
   }
 
   goToLogin() {

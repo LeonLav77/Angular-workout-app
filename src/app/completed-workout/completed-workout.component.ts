@@ -19,8 +19,6 @@ export class CompletedWorkoutComponent {
     fetchUserCompletedWorkouts() {
       this.UserStateService.getUser().then((user) => {
         this.workouts = user.completedWorkouts;
-        
-        console.log('Completed workouts:', this.workouts);
       });
     }
 }

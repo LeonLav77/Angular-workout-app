@@ -18,6 +18,7 @@ import { CompletedWorkoutListItemComponent } from './completed-workout-list-item
 import { ExerciseComponent } from './exercise/exercise.component';
 import { WorkoutDetailsComponent } from './workout-details/workout-details.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     AppRoutingModule,
     FormsModule,
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

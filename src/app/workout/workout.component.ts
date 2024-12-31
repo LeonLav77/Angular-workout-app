@@ -12,7 +12,9 @@ export class WorkoutComponent implements OnInit {
   workouts: Workout[] = [];
   selectedWorkout: Workout = new Workout(0, '', '', '');
 
-  constructor(private workoutService: WorkoutService, private router: Router) {}
+  constructor(
+    private workoutService: WorkoutService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.fetchWorkouts();

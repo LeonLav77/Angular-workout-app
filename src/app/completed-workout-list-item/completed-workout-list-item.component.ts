@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { Workout } from '../models/workout.model';
 
 @Component({
@@ -10,5 +9,5 @@ import { Workout } from '../models/workout.model';
 export class CompletedWorkoutListItemComponent {
   @Input() workout: Workout = new Workout(0, '');
 
-  constructor(private router: Router) {}
+  constructor() {}
 }

@@ -37,7 +37,6 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
   fetchWorkout(id: number) {
     this.workoutService.getWorkout(id).subscribe((workout: Workout) => {
       this.workout = workout;
-      console.log(this.workout);
     });
   }
 
@@ -46,7 +45,7 @@ export class ActiveWorkoutComponent implements OnInit, OnDestroy {
     this.startGlobalTimer();
   }
 
-  completeWorkout() {
+  completeExercise() {
     if (this.workout && this.activeWorkoutIndex < this.workout.exercises.length - 1) {
       this.isResting = true;
       this.startRestCountdown(() => {
