@@ -8,14 +8,12 @@ import { Workout } from '../models/workout.model';
 })
 export class CompletedWorkoutListItemComponent {
   @Input() workout: Workout = new Workout(0, '');
-
-  activeWorkout: Workout | null = null;
-
-  openModal(workout: Workout): void {
-    this.activeWorkout = workout;
+  activeWorkoutId: number | null = null;
+  toggleCollapse(workoutId: number): void {
+    this.activeWorkoutId = this.activeWorkoutId === workoutId ? null : workoutId;
   }
 
-  closeModal(): void {
-    this.activeWorkout = null;
+  isCollapsed(workoutId: number): boolean {
+    return this.activeWorkoutId === workoutId;
   }
 }
