@@ -19,12 +19,11 @@ export class UserStateService {
     this.initialize();
   }
 
-  // On initialization, check login status and fetch user data if logged in
   initialize() {
     const token = this.getLoginToken();
     if (token) {
       this.isLoggedInSubject.next(true);
-      this.checkAdminStatus(token);  // Check if user is admin when token is available
+      this.checkAdminStatus(token); 
     } else {
       this.isLoggedInSubject.next(false);
     }

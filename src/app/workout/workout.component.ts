@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class WorkoutComponent implements OnInit {
   workouts: Workout[] = [];
-  selectedWorkout: Workout = new Workout(0, '', '', ''); // For workout details (initialized with empty values)
+  selectedWorkout: Workout = new Workout(0, '', '', '');
 
   constructor(private workoutService: WorkoutService, private router: Router) {}
 
@@ -52,7 +52,6 @@ export class WorkoutComponent implements OnInit {
         }
       );
     } else {
-      // Edit existing workout
       this.workoutService.updateWorkout(this.selectedWorkout).subscribe(
         (updatedWorkout: Workout) => {
           const index = this.workouts.findIndex(workout => workout.id === updatedWorkout.id);

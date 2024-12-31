@@ -46,7 +46,6 @@ export class WorkoutDetailsComponent implements OnInit {
   }
 
   loadAvailableExercises(): void {
-    // Replace this mock logic with your API call for exercises not in the workout
     this.exerciseService.fetchExercises().subscribe(
       (exercises: Exercise[]) => {
         if (this.workout) {
@@ -92,10 +91,13 @@ export class WorkoutDetailsComponent implements OnInit {
           () => {
   
             this.selectedExercises.forEach((exercise: Exercise, index: number) => {
-              const reps = 10;
+              const reps = exercise.reps || 10;
               const order = index + 1;
   
               this.workoutService.addExerciseToWorkout(this.workout.id, exercise.id, reps, order).subscribe(
+                () => {
+                  console.log('Exercise added to workout');
+                },
                 (error: any) => {
                   console.error('Error adding exercise to workout', error);
                 }

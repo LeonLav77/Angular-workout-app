@@ -17,12 +17,10 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to the login status observable
     this.UserStateService.isLoggedIn$.subscribe(status => {
       this.isLoggedIn = status;
     });
 
-    // Subscribe to the admin status observable
     this.UserStateService.isAdmin$.subscribe(status => {
       this.isAdmin = status;
     });
@@ -33,7 +31,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    this.UserStateService.logout();  // Log out and update status
+    this.UserStateService.logout();
     this.router.navigate(['/login']);
   }
 

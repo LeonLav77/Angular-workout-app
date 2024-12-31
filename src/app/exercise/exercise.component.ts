@@ -9,8 +9,8 @@ import { ExerciseService } from '../exercise.service';
 })
 export class ExerciseComponent implements OnInit {
   exercises: Exercise[] = [];
-  selectedExercise: Exercise = new Exercise(0, '', '', ''); // Initialize with default empty values for name, description, and image
-  newExercise: Exercise = new Exercise(0, '', '', ''); // For creating new exercise
+  selectedExercise: Exercise = new Exercise(0, '', '', '');
+  newExercise: Exercise = new Exercise(0, '', '', ''); 
 
   constructor(private exerciseService: ExerciseService) {}
 
@@ -19,7 +19,6 @@ export class ExerciseComponent implements OnInit {
   }
 
   fetchExercises(): void {
-    // Simulating an API call to fetch exercises
     this.exerciseService.fetchExercises().subscribe(
       (data: Exercise[]) => {
         this.exercises = data;

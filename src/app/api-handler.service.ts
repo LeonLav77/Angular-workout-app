@@ -8,14 +8,13 @@ export class ApiHandlerService {
 
   constructor() {}
 
-  // POST request using fetch
   public async post(endpoint: string, data: any, headers: Record<string, string> = {}): Promise<any> {
     try {
       const response = await fetch(`${this.baseUrl}/${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          ...headers, // Spread operator adds custom headers
+          ...headers,
         },
         body: JSON.stringify(data),
       });
@@ -32,7 +31,6 @@ export class ApiHandlerService {
   }
   
 
-  // GET request using fetch
   public async get(endpoint: string): Promise<any> {
     try {
       const response = await fetch(`${this.baseUrl}/${endpoint}`);
@@ -48,7 +46,6 @@ export class ApiHandlerService {
     }
   }
 
-  // PUT request using fetch
   public async put(endpoint: string, data: any): Promise<any> {
     try {
       const response = await fetch(`${this.baseUrl}/${endpoint}`, {
@@ -70,7 +67,6 @@ export class ApiHandlerService {
     }
   }
 
-  // DELETE request using fetch
   public async delete(endpoint: string): Promise<any> {
     try {
       const response = await fetch(`${this.baseUrl}/${endpoint}`, {
@@ -88,13 +84,12 @@ export class ApiHandlerService {
     }
   }
 
-  // Helper function to handle different error scenarios based on response status
   private async handleError(response: Response): Promise<any> {
     const error = {
       status: response.status,
       statusText: response.statusText
     };
 
-    return error; // Only include status and statusText
+    return error; 
   }
 }
